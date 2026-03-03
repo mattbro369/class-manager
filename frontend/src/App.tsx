@@ -1,22 +1,22 @@
-import { Refine } from '@refinedev/core';
-import { DevtoolsPanel, DevtoolsProvider } from '@refinedev/devtools';
-import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar';
+import { Refine } from "@refinedev/core";
+import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from '@refinedev/react-router';
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router';
-import './App.css';
-import { Toaster } from './components/refine-ui/notification/toaster';
-import { useNotificationProvider } from './components/refine-ui/notification/use-notification-provider';
-import { ThemeProvider } from './components/refine-ui/theme/theme-provider';
-import { dataProvider } from './providers/data.ts';
-import Dashboard from '@/pages/dashboard.tsx';
-import { BookOpen, Home } from 'lucide-react';
-import { Layout } from '@/components/refine-ui/layout/layout.tsx';
-import SubjectsList from '@/pages/subjects/list.tsx';
-import SubjectsCreate from '@/pages/subjects/create.tsx';
+} from "@refinedev/react-router";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
+import "./App.css";
+import { Toaster } from "./components/refine-ui/notification/toaster";
+import { useNotificationProvider } from "./components/refine-ui/notification/use-notification-provider";
+import { ThemeProvider } from "./components/refine-ui/theme/theme-provider";
+import { dataProvider } from "./providers/data.ts";
+import Dashboard from "@/pages/dashboard.tsx";
+import { BookOpen, Home } from "lucide-react";
+import { Layout } from "@/components/refine-ui/layout/layout.tsx";
+import SubjectsList from "@/pages/subjects/list.tsx";
+import SubjectsCreate from "@/pages/subjects/create.tsx";
 
 function App() {
   return (
@@ -31,20 +31,20 @@ function App() {
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
-                projectId: 'oBzcCi-lrKGyz-2jRHxj',
+                projectId: "oBzcCi-lrKGyz-2jRHxj",
               }}
               resources={[
                 {
-                  name: 'dashboard',
-                  list: '/',
-                  meta: { label: 'Home', icon: <Home /> },
+                  name: "dashboard",
+                  list: "/",
+                  meta: { label: "Home", icon: <Home /> },
                 },
                 {
-                  name: 'subjects',
-                  list: '/subjects',
-                  create: '/subjects/create',
+                  name: "subjects",
+                  list: "/subjects",
+                  create: "/subjects/create",
                   meta: {
-                    label: 'Subjects',
+                    label: "Subjects",
                     icon: <BookOpen />,
                   },
                 },
