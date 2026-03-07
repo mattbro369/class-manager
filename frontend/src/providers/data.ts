@@ -1,42 +1,52 @@
-import {
-  DataProvider,
-  BaseRecord,
-  GetListResponse,
-  GetListParams,
-} from '@refinedev/core';
-import { MOCK_SUBJECTS } from '../constants';
+import { BACKEND_BASE_URL } from "@/constants";
+import { ListResponse } from "@/types";
+import { createDataProvider, CreateDataProviderOptions } from "@refinedev/rest";
 
-export const dataProvider: DataProvider = {
-  getList: async <TData extends BaseRecord = BaseRecord>({
-    resource,
-  }: GetListParams): Promise<GetListResponse<TData>> => {
-    const mockSubjects: BaseRecord[] = MOCK_SUBJECTS as unknown as BaseRecord[];
+if (!BACKEND_BASE_URL) {
+  throw new Error(
+    "BACKEND_BASE_URL is not defined. Please define it in your environment variables.",
+  );
+}
 
-    if (resource !== 'subjects') {
-      return {
-        data: [] as TData[],
-        total: 0,
-      };
-    }
+const options: CreateDataProviderOptions = {
+  getList: {
+    getEndpoint: ({ resource }) => resource,
 
-    return {
-      data: mockSubjects as unknown as TData[],
-      total: mockSubjects.length,
-    };
-  },
+    buildQueryParams: async ({ filters, resource, pagination }) => {
+      const page = pagination?.currentPage ?? 1;
+      const pageSize = pagination?.pageSize ?? 10;
 
-  getOne: async () => {
-    throw new Error('This function is not present in mock');
-  },
-  create: async () => {
-    throw new Error('This function is not present in mock');
-  },
-  update: async () => {
-    throw new Error('This function is not present in mock');
-  },
-  deleteOne: async () => {
-    throw new Error('This function is not present in mock');
-  },
+      const params: Record<string, string | number> = { page, limit: pageSize };
 
-  getApiUrl: () => '',
+      filters?.forEach((filter) => {
+        const field = "field" in filter ? filter.field : "";
+
+        const value = String(filter.value);
+
+        if (resource === "subjects") {
+          if (field === "department") {
+            params.department = value;
+          }
+          if (field === "name" || field === "code") {
+            params.search = value;
+          }
+        }
+      });
+
+      return params;
+    },
+    mapResponse: async (response) => {
+      const payload: ListResponse = await response.clone().json();
+      return payload.data ?? [];
+    },
+
+    getTotalCount: async (response) => {
+      const payload: ListResponse = await response.clone().json();
+      return payload.pagination?.total ?? 0;
+    },
+  },
 };
+
+const { dataProvider } = createDataProvider(BACKEND_BASE_URL, options);
+
+export { dataProvider };
