@@ -71,22 +71,22 @@ const ClassesCreate = () => {
     })
 
     // Fetch teachers list
-    // const { query: teachersQuery } = useList<User>({
-    //     resource: 'users',
-    //     filters: [
-    //         {
-    //             field: 'role',
-    //             operator: 'eq',
-    //             value: 'teacher',
-    //         },
-    //     ],
-    //     pagination: {
-    //         pageSize: 100,
-    //     },
-    // })
+    const { query: teachersQuery } = useList<User>({
+        resource: 'users',
+        filters: [
+            {
+                field: 'role',
+                operator: 'eq',
+                value: 'teacher',
+            },
+        ],
+        pagination: {
+            pageSize: 100,
+        },
+    })
 
-    // const teachers = teachersQuery.data?.data || []
-    // const teachersLoading = teachersQuery.isLoading
+    const teachers = teachersQuery.data?.data || []
+    const teachersLoading = teachersQuery.isLoading
 
     const subjects = subjectsQuery.data?.data || []
     const subjectsLoading = subjectsQuery.isLoading
@@ -253,7 +253,7 @@ const ClassesCreate = () => {
                                         )}
                                     />
 
-                                    {/* <FormField
+                                    <FormField
                                         control={control}
                                         name="teacherId"
                                         render={({ field }) => (
@@ -298,7 +298,7 @@ const ClassesCreate = () => {
                                                 <FormMessage />
                                             </FormItem>
                                         )}
-                                    /> */}
+                                    />
                                 </div>
 
                                 <div className="grid sm:grid-cols-2 gap-4">
