@@ -59,7 +59,9 @@ export default function UploadWidget({
         if (initialiseWidget()) return
 
         const intervalId = window.setInterval(() => {
-            window.clearInterval(intervalId)
+            if (initialiseWidget()) {
+                window.clearInterval(intervalId)
+            }
         }, 500)
 
         return () => window.clearInterval(intervalId)
