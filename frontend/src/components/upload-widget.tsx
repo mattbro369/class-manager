@@ -50,6 +50,11 @@ export default function UploadWidget({
                     clientAllowedFormats: ['png', 'jpg', 'jpeg', 'webp'],
                 },
                 (error, result) => {
+                    if (error) {
+                        console.error('Upload failed:', error)
+                        // Optionally: surface error to user via state/toast
+                        return
+                    }
                     if (!error && result.event === 'success') {
                         const payload: UploadWidgetValue = {
                             url: result.info.secure_url,
@@ -67,7 +72,9 @@ export default function UploadWidget({
         if (initialiseWidget()) return
 
         const intervalId = window.setInterval(() => {
-            window.clearInterval(intervalId)
+            if (initialiseWidget()) {
+                window.clearInterval(intervalId)
+            }
         }, 500)
 
         return () => window.clearInterval(intervalId)
