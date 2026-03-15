@@ -410,6 +410,7 @@ const ClassesCreate = () => {
                                     type="submit"
                                     size="lg"
                                     className="w-full"
+                                    disabled={isSubmitting}
                                 >
                                     {isSubmitting ? (
                                         <div className="flex gap-1">
