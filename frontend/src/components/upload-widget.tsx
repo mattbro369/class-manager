@@ -3,6 +3,14 @@ import { UploadWidgetValue } from '@/types'
 import { UploadCloudIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
+/**
+ * Renders an upload widget that integrates with Cloudinary, displays an uploaded image preview, and notifies the parent when an upload completes.
+ *
+ * @param value - Current uploaded value to display as the preview, or null for no preview
+ * @param onChange - Callback invoked with the uploaded value (`{ url, publicId }`) when an upload succeeds
+ * @param disabled - When true, prevents opening the Cloudinary upload widget (default: false)
+ * @returns The UploadWidget React element that shows either an image preview or an interactive dropzone which opens the Cloudinary widget on interaction
+ */
 export default function UploadWidget({
     value,
     onChange,

@@ -20,6 +20,15 @@ import SubjectsCreate from "@/pages/subjects/create.tsx";
 import ClassesList from "@/pages/classes/list.tsx";
 import ClassesCreate from "@/pages/classes/create.tsx";
 
+/**
+ * Root application component that configures providers, routes, and UI integrations.
+ *
+ * Sets up router and global providers (kbar, theme, devtools, Refine), registers resources
+ * (dashboard, subjects, classes), and declares the app routes and common UI utilities
+ * (toaster, kbar, unsaved-changes notifier, document title handler).
+ *
+ * @returns The application's root JSX element
+ */
 function App() {
   return (
     <BrowserRouter>

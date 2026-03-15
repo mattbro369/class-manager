@@ -55,6 +55,13 @@ export const ALLOWED_TYPES = [
     'image/webp',
 ]
 
+/**
+ * Ensure a required environment variable is present.
+ *
+ * @param name - The environment variable name used in the error message when missing
+ * @param value - The value to validate; considered missing if falsy
+ * @throws Error if `value` is falsy with message "Missing required environment variable: <name>"
+ */
 function assertEnv(name: string, value: any) {
     if (!value) {
         throw new Error(`Missing required environment variable: ${name}`)
