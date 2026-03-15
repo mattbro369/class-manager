@@ -1,6 +1,6 @@
 import * as z from 'zod';
 
-export const facultySchema = {
+export const facultySchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address'),
   role: z.enum(['admin', 'teacher', 'staff'], {
@@ -9,7 +9,7 @@ export const facultySchema = {
   department: z.string().min(2, 'Department must be at least 2 characters'),
   image: z.string().url('Image must be a valid URL').optional(),
   imageCldPublicId: z.string().optional(),
-};
+});
 
 export const subjectSchema = z.object({
   name: z.string().min(3, 'Subject name must be at least 3 characters'),
