@@ -93,7 +93,7 @@ function App() {
                 </Route>
               </Routes>
               <Toaster />
-              <RefineKbar />
+              <RefineKbar  />
               <UnsavedChangesNotifier />
               <DocumentTitleHandler />
             </Refine>
