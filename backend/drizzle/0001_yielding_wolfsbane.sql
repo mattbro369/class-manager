@@ -14,7 +14,8 @@ CREATE TABLE "classes" (
 	"schedules" jsonb,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL,
-	CONSTRAINT "classes_invite_code_unique" UNIQUE("invite_code")
+	CONSTRAINT "classes_invite_code_unique" UNIQUE("invite_code"),
+	CONSTRAINT "classes_capacity_positive_chk" CHECK ("capacity" > 0)
 );
 --> statement-breakpoint
 CREATE TABLE "enrollments" (
