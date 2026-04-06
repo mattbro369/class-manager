@@ -28,7 +28,7 @@ Class Manager is a TypeScript-based project featuring a React frontend with mode
 ## Project Structure
 
 # Install root dependencies
-npm install
+```npm install```
 
 # Install frontend dependencies
 cd frontend && npm install
