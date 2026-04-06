@@ -27,16 +27,18 @@ Class Manager is a TypeScript-based project featuring a React frontend with mode
 
 ## Project Structure
 
-# Install root dependencies
+### Install root dependencies
 ```npm install```
 
-# Install frontend dependencies
-cd frontend && npm install
+### Install frontend dependencies
+```cd frontend && npm install```
 
-# Install backend dependencies
-cd ../backend && npm install
+### Install backend dependencies
+```cd ../backend && npm install```
 
 # Migration
+```
 cd backend
 npm run db:generate  # Generate migration files
 npm run db:migrate   # Run migrations
+```
